@@ -1,5 +1,5 @@
-import {useState} from 'react'
-
+import {useState, useEffect} from 'react'
+import { ProductCard } from '../components/ProductCard'
 
 
 const Home = () => {
@@ -12,13 +12,16 @@ useEffect(() => {
     .catch (err => console.error(err))
 }, [])
 
-const allProducts = products.map(product => <li>{product.name}</li>)
+const allProducts = products.map(product => {
+    console.log(product)
+    return <ProductCard key={product._id} product={product} />
+})
 
     return (
-        <>
+        <div className='container'>
         <h1>Home component</h1>
-        <ul>{allProducts}</ul>
-        </>
+        <div className='products'>{allProducts}</div>
+        </div>
     )
 }
 
